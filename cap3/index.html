@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>Capitulo 3</title>
+  </head>
+  <body>
+    <script type="module">
+      import init from "./pkg/modulo.js";
+
+      init();
+
+      const bytes = Uint8Array.of(
+        0x0,
+        0x61,
+        0x73,
+        0x6d,
+        0x01,
+        0x00,
+        0x00,
+        0x00
+      );
+      if (WebAssembly.validate(bytes)) {
+        const compilarBytes = WebAssembly.compile(bytes);
+        compilarBytes.then((modulo) => {
+          // WebAssembly.Module { }
+          console.log(modulo);
+          // retorna a lista de importações no arquivo binário
+          console.log(WebAssembly.Module.imports(modulo));
+          // retorna a lista de exportações no arquivo binário
+          console.log(WebAssembly.Module.exports(modulo));
+        });
+      }
+      // Módulo compilado porém não foi instanciado
+      const compilarModulo = WebAssembly.compileStreaming(
+        fetch("./pkg/modulo_bg.wasm")
+      ).then((modulo) => {
+        // WebAssembly.Module { }
+        console.log(modulo);
+        // retorna a lista de importações no arquivo binário
+        console.log(WebAssembly.Module.imports(modulo));
+        // retorna a lista de exportações no arquivo binário
+        console.log(WebAssembly.Module.exports(modulo));
+      });
+
+      const instanciarModulo = WebAssembly.instantiateStreaming(
+        fetch("./pkg/modulo_bg.wasm"),
+        {
+          imports: {},
+        }
+      ).then((resultado) => {
+        console.log(resultado.instance);
+      });
+    </script>
+  </body>
+</html>

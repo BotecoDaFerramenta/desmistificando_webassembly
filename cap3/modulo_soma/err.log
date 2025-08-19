@@ -1,0 +1,10 @@
+[1m[2m[INFO][0m: 🎯  Checking for the Wasm target...
+[1m[2m[INFO][0m: 🌀  Compiling to Wasm...
+   Compiling modulo_soma v0.1.0 (/home/msratso/workspaces/BotecoDaFerramenta/desmistificando_webassembly/cap3/modulo_soma)
+    Finished `release` profile [optimized] target(s) in 0.11s
+Error: Ensure that you have "[1m[2mwasm-bindgen[0m" as a dependency in your Cargo.toml file:
+[dependencies]
+wasm-bindgen = "0.2"
+Caused by: Ensure that you have "[1m[2mwasm-bindgen[0m" as a dependency in your Cargo.toml file:
+[dependencies]
+wasm-bindgen = "0.2"
