@@ -1,0 +1,20 @@
+# Rust
+target/
+*.rs.bk
+err.log
+
+# JavaScript
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+
+# Wasm
+# The pkg directory is where the wasm files are generated.
+pkg/
+
+# General
+.DS_Store
+
+# Cargo.lock is not ignored in this project.
+# It is important to keep it to ensure that the same dependencies are used everywhere.
