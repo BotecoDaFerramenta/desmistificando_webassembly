@@ -1,1 +1,0 @@
-/home/msratso/workspaces/BotecoDaFerramenta/desmistificando_webassembly/cap2/modulo/target/wasm32-unknown-unknown/release/modulo.wasm: /home/msratso/workspaces/BotecoDaFerramenta/desmistificando_webassembly/cap2/modulo/src/lib.rs
