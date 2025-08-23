@@ -1,0 +1,10 @@
+warning: function `quadrado` is never used
+  --> vinculacao.rs:12:8
+   |
+12 |     fn quadrado(x: i32) -> i32;
+   |        ^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: 1 warning emitted
+
