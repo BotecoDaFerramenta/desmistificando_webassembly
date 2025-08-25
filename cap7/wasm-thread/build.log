@@ -1,0 +1,7 @@
+   Compiling wasm-thread v0.1.0 (/home/msratso/workspaces/BotecoDaFerramenta/desmistificando_webassembly/cap7/wasm-thread)
+warning: unstable feature specified for `-Ctarget-feature`: `atomics`
+  |
+  = note: this feature is not stably supported; its behavior can change in the future
+
+warning: `wasm-thread` (lib) generated 1 warning
+    Finished `release` profile [optimized] target(s) in 0.06s

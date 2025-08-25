@@ -1,0 +1,12 @@
+[package]
+name = "wasm-thread"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+
+[dev-dependencies]
+cargo-server = "0.3.6"
