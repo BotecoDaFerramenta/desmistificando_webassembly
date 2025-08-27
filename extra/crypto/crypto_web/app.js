@@ -5,12 +5,16 @@ console.log(`processadores: ${processadores}`);
 
 // Initialize workers
 for (let i = 0; i < processadores; i++) {
-  let worker = new Worker("./worker.js");
+  let worker = new Worker("./worker.js", { type: "module" });
   
   worker.addEventListener("message", (e) => {
     if (e.data.operacao === "INICIALIZAR") {
-      workersLista.push(worker);
-      console.log(`Worker ${i} inicializado`);
+      if (e.data.success) {
+        workersLista.push(worker);
+        console.log(`Worker ${i} inicializado`);
+      } else {
+        console.error(`Worker ${i} failed to initialize:`, e.data.error);
+      }
     }
     
     if (e.data.operacao === "KEY_DERIVATION") {
@@ -51,8 +55,8 @@ function testKeyDerivation() {
   const worker = getAvailableWorker();
   worker.postMessage({
     operacao: "KEY_DERIVATION",
-    password,
-    salt
+    password: new TextEncoder().encode(password),
+    salt: new TextEncoder().encode(salt)
   });
 }
 
@@ -69,7 +73,7 @@ function testEncryption() {
   const worker = getAvailableWorker();
   worker.postMessage({
     operacao: "ENCRYPTION",
-    plaintext
+    plaintext: new TextEncoder().encode(plaintext)
   });
 }
 
@@ -87,8 +91,8 @@ function testHMAC() {
   const worker = getAvailableWorker();
   worker.postMessage({
     operacao: "HMAC",
-    key,
-    message
+    key: new TextEncoder().encode(key),
+    message: new TextEncoder().encode(message)
   });
 }
 
@@ -123,10 +127,12 @@ function handleEncryptionResult(data) {
   if (data.success) {
     const hexCiphertext = Array.from(data.ciphertext).map(b => b.toString(16).padStart(2, '0')).join('');
     showResult('encryption-result', 
-      `Texto original: ${data.originalText}<br>
+      `Texto original: ${new TextDecoder().decode(data.originalText)}<br>
        Texto criptografado: <div class="hex-output">${hexCiphertext}</div>
        Texto descriptografado: ${data.decryptedText}<br>
-       Sucesso: ${data.originalText === data.decryptedText}`, true);
+       Sucesso: ${new TextDecoder().decode(data.originalText) === data.decryptedText}`,
+       true
+    );
   } else {
     showResult('encryption-result', `Erro: ${data.error}`, false);
   }
