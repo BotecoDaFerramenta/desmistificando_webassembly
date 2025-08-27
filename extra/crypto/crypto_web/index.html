@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="data:image/png;base64,-" />
+    <title>WebAssembly Crypto Library</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+      .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+      .test-result { margin: 10px 0; padding: 10px; border-radius: 3px; }
+      .success { background-color: #d4edda; color: #155724; }
+      .error { background-color: #f8d7da; color: #721c24; }
+      button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+      input { padding: 8px; margin: 5px; width: 200px; }
+      .hex-output { font-family: monospace; word-break: break-all; }
+    </style>
+  </head>
+  <body>
+    <h1>WebAssembly Crypto Library Tests</h1>
+    
+    <div class="test-section">
+      <h2>Key Derivation (Argon2)</h2>
+      <input type="text" id="password" placeholder="Password" value="mypassword">
+      <input type="text" id="salt" placeholder="Salt" value="mysalt123">
+      <button onclick="testKeyDerivation()">Derive Key</button>
+      <div id="key-result" class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>AES-GCM Encryption/Decryption</h2>
+      <input type="text" id="plaintext" placeholder="Text to encrypt" value="Hello WebAssembly!">
+      <button onclick="testEncryption()">Encrypt & Decrypt</button>
+      <div id="encryption-result" class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>HMAC-SHA256</h2>
+      <input type="text" id="hmac-key" placeholder="HMAC Key" value="secretkey">
+      <input type="text" id="hmac-message" placeholder="Message" value="Hello HMAC!">
+      <button onclick="testHMAC()">Generate HMAC</button>
+      <div id="hmac-result" class="test-result"></div>
+    </div>
+
+    <div class="test-section">
+      <h2>Performance Test</h2>
+      <button onclick="testPerformance()">Run Performance Test</button>
+      <div id="performance-result" class="test-result"></div>
+    </div>
+
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
